@@ -42,23 +42,6 @@ int main()
 		return -1;
 	}
 
-	//查询OpenGL版本信息
-	const GLubyte* vendor = glGetString(GL_VENDOR);
-	const GLubyte* renderer = glGetString(GL_RENDERER);
-	const GLubyte* versionStr = glGetString(GL_VERSION);
-	const GLubyte* glslVersionStr = glGetString(GL_SHADING_LANGUAGE_VERSION);
-
-	GLint major, minor;
-	glGetIntegerv(GL_MAJOR_VERSION, &major);
-	glGetIntegerv(GL_MINOR_VERSION, &minor);
-
-	std::cout << "==== OpenGL信息 ====" << std::endl;
-	std::cout << "厂商(Vendor): " << vendor << std::endl;
-	std::cout << "渲染器(Renderer): " << renderer << std::endl;
-	std::cout << "OpenGL版本字符串: " << versionStr << std::endl;
-	std::cout << "OpenGL主版本: " << major << ", 次版本: " << minor << std::endl;
-	std::cout << "GLSL版本: " << glslVersionStr << std::endl;
-
 	//渲染循环
 	while (!glfwWindowShouldClose(window))
 	{
