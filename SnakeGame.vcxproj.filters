@@ -16,6 +16,12 @@
     <Filter Include="res\textures">
       <UniqueIdentifier>{cea40ec4-011b-4a74-ab0f-c1ffd4ac0037}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\core">
+      <UniqueIdentifier>{e5f8bb2c-7a49-4619-a4e2-537f36f55d73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\renderer\bridge">
+      <UniqueIdentifier>{ede24185-5beb-40d1-a5ea-8276c2d25718}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -24,34 +30,22 @@
     <ClCompile Include="dependencies\glad\src\glad.c">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\renderer\createwindow.cpp">
-      <Filter>src\renderer</Filter>
+    <ClCompile Include="src\core\world.cpp">
+      <Filter>src\core</Filter>
     </ClCompile>
-    <ClCompile Include="src\renderer\shader.cpp">
-      <Filter>src\renderer</Filter>
+    <ClCompile Include="src\renderer\bridge\bridge.cpp">
+      <Filter>src\renderer\bridge</Filter>
     </ClCompile>
-    <ClCompile Include="src\renderer\texture.cpp">
-      <Filter>src\renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\renderer\setworld.cpp">
-      <Filter>src\renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\renderer\bridge.cpp">
-      <Filter>src\renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\renderer\loadtexture.cpp">
-      <Filter>src\renderer</Filter>
+    <ClCompile Include="src\renderer\bridge\stb_image.cpp">
+      <Filter>src\renderer\bridge</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\renderer\shader.h">
-      <Filter>src\renderer</Filter>
+    <ClInclude Include="src\core\world.h">
+      <Filter>src\core</Filter>
     </ClInclude>
-    <ClInclude Include="src\renderer\bridge.h">
-      <Filter>src\renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\renderer\loadtexture.h">
-      <Filter>src\renderer</Filter>
+    <ClInclude Include="src\renderer\bridge\bridge.h">
+      <Filter>src\renderer\bridge</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

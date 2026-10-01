@@ -1,6 +1,59 @@
-#include "shader.h"
-#include <glm/glm.hpp>
+#include"world.h"
+#include<iostream>
+#include <fstream>
+#include <sstream>
 #include <glm/gtc/type_ptr.hpp>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
+GLFWwindow* mywindow::create_a_window()
+{
+	if (!glfwInit())
+	{
+		std::cout << "Failed to initialize GLFW" << std::endl;
+	}
+
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
+	if (window == NULL)
+	{
+		std::cout << "Failed to create GLFW window" << std::endl;
+		glfwTerminate();
+	}
+
+	glfwMakeContextCurrent(window);
+
+	glfwSetWindowUserPointer(window, this);//set the user pointer to the current instance of mywindow class思考加1 实现方法
+
+	//register callback function
+	glfwSetFramebufferSizeCallback(window, mywindow::framebuffer_size_callback);
+
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+	{
+		std::cout << "Failed to initialize GLAD" << std::endl;
+	}
+
+	return window;
+}
+void mywindow::framebuffer_size_callback(GLFWwindow* window, int width, int height)
+{
+	mywindow* obj = (mywindow*)glfwGetWindowUserPointer(window);
+	glViewport(0, 0, width, height);
+}
+void mywindow::set_mode()
+{
+	glEnable(GL_DEPTH_TEST);
+}
+void mywindow::processInput(GLFWwindow* window)
+{
+	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+	{
+		glfwSetWindowShouldClose(window, true);
+	}
+}
 
 Shader::Shader(const char* vertexPath, const char* fragmentPath)
 {
@@ -72,6 +125,9 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
 void Shader::use()
 {
 	glUseProgram(ID);
+}void Shader::delete_program()
+{
+	glDeleteProgram(ID);
 }
 void Shader::setMat4(const std::string& name, const glm::mat4& value) const
 {
@@ -81,7 +137,15 @@ void Shader::setInt(const std::string& name, int value) const
 {
 	glUniform1i(glGetUniformLocation(ID, name.c_str()), value);
 }
-Shader::~Shader()
+void camera::set_cube_position(glm::vec3 position)
 {
-	glDeleteProgram(ID);
+	cube_model = glm::translate(glm::mat4(1.0f), position);
+}
+void camera::set_camera(Shader& shader)
+{
+	glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+	shader.setMat4("view", view);
+
+	glm::mat4 projection = glm::perspective(glm::radians(45.0f), static_cast<float>(SCR_WIDTH) / static_cast<float>(SCR_HEIGHT), 0.1f, 100.0f);
+	shader.setMat4("projection", projection);
 }

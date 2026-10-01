@@ -143,18 +143,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="dependencies\glad\src\glad.c" />
+    <ClCompile Include="src\core\world.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\renderer\bridge.cpp" />
-    <ClCompile Include="src\renderer\createwindow.cpp" />
-    <ClCompile Include="src\renderer\loadtexture.cpp" />
-    <ClCompile Include="src\renderer\setworld.cpp" />
-    <ClCompile Include="src\renderer\shader.cpp" />
-    <ClCompile Include="src\renderer\texture.cpp" />
+    <ClCompile Include="src\renderer\bridge\bridge.cpp" />
+    <ClCompile Include="src\renderer\bridge\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\renderer\bridge.h" />
-    <ClInclude Include="src\renderer\loadtexture.h" />
-    <ClInclude Include="src\renderer\shader.h" />
+    <ClInclude Include="src\core\world.h" />
+    <ClInclude Include="src\renderer\bridge\bridge.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\basic.frag" />
