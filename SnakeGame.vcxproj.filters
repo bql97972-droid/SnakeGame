@@ -7,6 +7,15 @@
     <Filter Include="res">
       <UniqueIdentifier>{d5ac3c19-77bc-482f-bbb8-5b938c9b2a86}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\renderer">
+      <UniqueIdentifier>{28ca6ac3-9712-4e87-8a01-1352929da7b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res\shaders">
+      <UniqueIdentifier>{f4508e0c-ed0f-4b17-97f9-a62855ef4c8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res\textures">
+      <UniqueIdentifier>{cea40ec4-011b-4a74-ab0f-c1ffd4ac0037}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -15,5 +24,50 @@
     <ClCompile Include="dependencies\glad\src\glad.c">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\renderer\createwindow.cpp">
+      <Filter>src\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\renderer\shader.cpp">
+      <Filter>src\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\renderer\texture.cpp">
+      <Filter>src\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\renderer\setworld.cpp">
+      <Filter>src\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\renderer\bridge.cpp">
+      <Filter>src\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\renderer\loadtexture.cpp">
+      <Filter>src\renderer</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\renderer\shader.h">
+      <Filter>src\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderer\bridge.h">
+      <Filter>src\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderer\loadtexture.h">
+      <Filter>src\renderer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\shaders\basic.frag">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\basic.vert">
+      <Filter>res\shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\textures\grass.jpg">
+      <Filter>res\textures</Filter>
+    </Image>
+    <Image Include="res\textures\sideofgrass.jpg">
+      <Filter>res\textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>

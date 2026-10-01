@@ -1,69 +1,85 @@
 #include<glad/glad.h>
 #include<GLFW/glfw3.h>
 #include<iostream>
+#include"renderer/shader.h"
+#include"renderer/bridge.h"
+#include"renderer/loadtexture.h"
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
-
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
+GLFWwindow* create_a_window();
+unsigned int load_texture(const char* path);
+void set_world(Shader& shader);
 
 int main()
 {
-	//初始化GLFW并检查是否初始化成功
-	if(!glfwInit())
-	{
-		std::cout << "Failed to initialize GLFW" << std::endl;
-		return -1;
-	}
+	GLFWwindow* window = create_a_window();
+	glEnable(GL_DEPTH_TEST);
+	Shader shader("res/shaders/basic.vert", "res/shaders/basic.frag");
 
-	//配置窗口选项
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	float floorVerticesup[] = {
+		// positions          // color coords          // texture coords
+		 0.8f, -0.8f,  0.0f,  1.0f, 1.0f, 1.0f,  1.0f, 0.0f,
+		-0.8f, -0.8f,  0.0f,  1.0f, 1.0f, 1.0f,  0.0f, 0.0f,
+		-0.8f,  0.8f,  0.0f,  1.0f, 1.0f, 1.0f,  0.0f, 1.0f,
+		 0.8f,  0.8f,  0.0f,  1.0f, 1.0f, 1.0f,  1.0f, 1.0f,
+	};
+	unsigned int floorIndicesup[] = {
+		0, 1, 2,
+		0, 2, 3
+	};
 
-	//创建窗口对象
-	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
-	if (window == NULL)
-	{
-		std::cout << "Failed to create GLFW window" << std::endl;
-		glfwTerminate();
-		return -1;
-	}
-	
-	// 将申请的窗口上下文设置成当前上下文
-	glfwMakeContextCurrent(window);
-	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+	float floorVerticesfront[] = {
+		// positions          // color coords          // texture coords
+		 0.8f, -0.8f,  0.0f,  1.0f, 1.0f, 1.0f,  1.0f, 1.0f,
+		 0.8f, -0.8f, -0.8f,  1.0f, 1.0f, 1.0f,  1.0f, 0.0f,
+		-0.8f, -0.8f, -0.8f,  1.0f, 1.0f, 1.0f,  0.0f, 0.0f,
+		-0.8f, -0.8f,  0.0f,  1.0f, 1.0f, 1.0f,  0.0f, 1.0f,
+	};
+	unsigned int floorIndicesfront[] = {
+		0, 1, 2,
+		0, 2, 3
+	};
 
-	//初始化GLAD
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-	{
-		std::cout << "Failed to initialize GLAD" << std::endl;
-		return -1;
-	}
+	Bridge floorupBridge;
+	floorupBridge.cpu_to_gpu(floorVerticesup, floorIndicesup);
+	loadtexture floorTextureup;
+	floorTextureup.load("C:/SnakeGame/res/textures/grass.jpg");
+	shader.setInt("ourTexture", floorTextureup.textureID);
 
-	//渲染循环
+	Bridge floorFrontBridge;
+	floorFrontBridge.cpu_to_gpu(floorVerticesfront, floorIndicesfront);
+	loadtexture floorTexturefront;
+	floorTexturefront.load("C:/SnakeGame/res/textures/sideofgrass.jpg");
+	shader.setInt("ourTexture", floorTexturefront.textureID);
+
+
 	while (!glfwWindowShouldClose(window))
 	{
-		//渲染指令
-		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClearColor(0.52, 0.80, 0.92, 1.0);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		//检查用户输入
 		processInput(window);
 
-		//交换缓冲区和轮询IO事件
-		glfwSwapBuffers(window);
+		shader.use();
+
+		set_world(shader);
+
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, floorTextureup.textureID);
+		glBindVertexArray(floorupBridge.VAO);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, floorTexturefront.textureID);
+		glBindVertexArray(floorFrontBridge.VAO);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+		glfwSwapBuffers(window);	
 		glfwPollEvents();
 	}
-	
-	//释放资源
+
 	glfwTerminate();
 	return 0;
-}
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
-{
-	glViewport(0, 0, width, height);
 }
 void processInput(GLFWwindow* window)
 {
