@@ -201,7 +201,7 @@ OpenGL 是面向过程、面向数据的图形API；C++ 是面向对象语言。
 ## 十三、开源
 
 - **依赖清单**：GLFW、GLAD、GLM、stb_image。
-- **运行效果**：演示视频 [SnakeGame-demo.mp4](./SnakeGame-demo.mp4)，见[十六章 · 运行效果](#十六运行效果)。
+- **运行效果**：演示图片见[十六章 · 运行效果](#十六运行效果)。
 - **说明**：本 md 记录开发过程与决策，作为开源日志留存。
 
 ## 十四、代码质量改进点
@@ -221,6 +221,5 @@ OpenGL 是面向过程、面向数据的图形API；C++ 是面向对象语言。
 
 ## 十六、运行效果
 
-演示视频（屏幕录制，2026-10-05）：
-
-<video src="./SnakeGame-demo.mp4" controls width="720"></video>
+2026/10/05
+![SnakeGame 运行效果](./SnakeGame.png)
