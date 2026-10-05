@@ -6,18 +6,17 @@
 #include <string>
 #include <glm/glm.hpp>
 
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 800;
+const unsigned int SCR_WIDTH = 1000;
+const unsigned int SCR_HEIGHT = 1000;
 
 class mywindow
 {
 	public:
 		GLFWwindow* window;
 
-		GLFWwindow* create_a_window();
+		void create_a_window();
 		static void framebuffer_size_callback(GLFWwindow* window, int width, int height);//思考加1
 		void set_mode();
-		void processInput(GLFWwindow* window);
 };
 
 class Shader
@@ -38,18 +37,13 @@ class Shader
 class camera
 {
 public:
-	glm::mat4 cube_model;
-
 	glm::vec3 cameraPos;
 	glm::vec3 cameraFront;
 	glm::vec3 cameraUp;
-
-	camera(glm::vec3 pos, glm::vec3 front, glm::vec3 up)
-		: cameraPos(pos), cameraFront(front), cameraUp(up) {
-	}
+	
 	camera() : cameraPos(glm::vec3(0.0f, -1.0f, 3.0f)), cameraFront(glm::normalize(glm::vec3(0.0f, 1.0f, -3.0f))), cameraUp(glm::vec3(0.0f, 1.0f, 0.0f)) {
 	}
-	void set_cube_position(glm::vec3 position);
 	void set_camera(Shader& shader); 
 };
+
 #endif

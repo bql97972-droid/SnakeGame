@@ -144,21 +144,30 @@
   <ItemGroup>
     <ClCompile Include="dependencies\glad\src\glad.c" />
     <ClCompile Include="src\core\world.cpp" />
+    <ClCompile Include="src\data\data.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\renderer\bridge\bridge.cpp" />
     <ClCompile Include="src\renderer\bridge\stb_image.cpp" />
+    <ClCompile Include="src\renderer\object.cpp" />
+    <ClCompile Include="src\renderer\renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\world.h" />
+    <ClInclude Include="src\data\data.h" />
     <ClInclude Include="src\renderer\bridge\bridge.h" />
+    <ClInclude Include="src\renderer\object.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\basic.frag" />
     <None Include="res\shaders\basic.vert" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="res\textures\foodfront.png" />
+    <Image Include="res\textures\foodup.png" />
     <Image Include="res\textures\grass.jpg" />
     <Image Include="res\textures\sideofgrass.jpg" />
+    <Image Include="res\textures\snakefront.png" />
+    <Image Include="res\textures\snakeup.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

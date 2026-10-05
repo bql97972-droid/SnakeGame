@@ -22,6 +22,9 @@
     <Filter Include="src\renderer\bridge">
       <UniqueIdentifier>{ede24185-5beb-40d1-a5ea-8276c2d25718}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\data">
+      <UniqueIdentifier>{e8216077-2ddd-4315-a406-edc5b0254f43}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -39,6 +42,15 @@
     <ClCompile Include="src\renderer\bridge\stb_image.cpp">
       <Filter>src\renderer\bridge</Filter>
     </ClCompile>
+    <ClCompile Include="src\renderer\object.cpp">
+      <Filter>src\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\renderer\renderer.cpp">
+      <Filter>src\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\data\data.cpp">
+      <Filter>src\data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\world.h">
@@ -46,6 +58,12 @@
     </ClInclude>
     <ClInclude Include="src\renderer\bridge\bridge.h">
       <Filter>src\renderer\bridge</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderer\object.h">
+      <Filter>src\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\data\data.h">
+      <Filter>src\data</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +79,18 @@
       <Filter>res\textures</Filter>
     </Image>
     <Image Include="res\textures\sideofgrass.jpg">
+      <Filter>res\textures</Filter>
+    </Image>
+    <Image Include="res\textures\snakefront.png">
+      <Filter>res\textures</Filter>
+    </Image>
+    <Image Include="res\textures\snakeup.png">
+      <Filter>res\textures</Filter>
+    </Image>
+    <Image Include="res\textures\foodup.png">
+      <Filter>res\textures</Filter>
+    </Image>
+    <Image Include="res\textures\foodfront.png">
       <Filter>res\textures</Filter>
     </Image>
   </ItemGroup>

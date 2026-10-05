@@ -6,7 +6,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-GLFWwindow* mywindow::create_a_window()
+void mywindow::create_a_window()
 {
 	if (!glfwInit())
 	{
@@ -17,7 +17,7 @@ GLFWwindow* mywindow::create_a_window()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
+	window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Snake Game", NULL, NULL);
 	if (window == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -36,7 +36,6 @@ GLFWwindow* mywindow::create_a_window()
 		std::cout << "Failed to initialize GLAD" << std::endl;
 	}
 
-	return window;
 }
 void mywindow::framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
@@ -46,13 +45,6 @@ void mywindow::framebuffer_size_callback(GLFWwindow* window, int width, int heig
 void mywindow::set_mode()
 {
 	glEnable(GL_DEPTH_TEST);
-}
-void mywindow::processInput(GLFWwindow* window)
-{
-	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-	{
-		glfwSetWindowShouldClose(window, true);
-	}
 }
 
 Shader::Shader(const char* vertexPath, const char* fragmentPath)
@@ -125,7 +117,8 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
 void Shader::use()
 {
 	glUseProgram(ID);
-}void Shader::delete_program()
+}
+void Shader::delete_program()
 {
 	glDeleteProgram(ID);
 }
@@ -136,10 +129,6 @@ void Shader::setMat4(const std::string& name, const glm::mat4& value) const
 void Shader::setInt(const std::string& name, int value) const
 {
 	glUniform1i(glGetUniformLocation(ID, name.c_str()), value);
-}
-void camera::set_cube_position(glm::vec3 position)
-{
-	cube_model = glm::translate(glm::mat4(1.0f), position);
 }
 void camera::set_camera(Shader& shader)
 {

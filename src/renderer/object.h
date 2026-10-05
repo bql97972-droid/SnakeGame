@@ -1,16 +1,20 @@
+
 #ifndef OBJECTS_H
 #define OBJECTS_H
 
 #include"bridge/bridge.h"
-#include"src/core/world.h"
+#include"../core/world.h"
 
 class object
-{
+{    
+
 	public:
-		Bridge objectBridge1,objectBridge2;
-		void create_object(float* vertices1,float* vertices2,unsigned int* indices);
+		Bridge objectBridge1,objectBridge2,objectBridge3,objectBridge4;
+		void create_object(float* vertices1,float* vertices2,float* vertices3,float* vertices4,unsigned int* indices);
 		unsigned int return_objectBridge_VAO1();
 		unsigned int return_objectBridge_VAO2();
+		unsigned int return_objectBridge_VAO3();
+		unsigned int return_objectBridge_VAO4();
 		void delete_objectBridge();
 
 		texture objectTexture1, objectTexture2;
