@@ -229,6 +229,6 @@ Mathematically equal but binary representations differ (~1e-9). Therefore food c
 ## XVI. Runtime Preview
 
 2026/10/05
-![SnakeGame runtime preview](./SnakeGame.png)
+![SnakeGame runtime preview](./SnakeGame-demo.gif)
 
 ---THANK YOU . LearnOpenGL---

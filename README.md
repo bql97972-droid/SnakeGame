@@ -222,6 +222,6 @@ OpenGL 是面向过程、面向数据的图形API；C++ 是面向对象语言。
 ## 十六、运行效果
 
 2026/10/05
-![SnakeGame 运行效果](./SnakeGame.png)   
+![SnakeGame 运行效果](./SnakeGame-demo.gif)   
 
 ---
